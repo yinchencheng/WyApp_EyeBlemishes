@@ -33,7 +33,7 @@ namespace WY_App.Utility
             catch (Exception ex)
             {
                 LogHelper.Log.WriteError(System.DateTime.Now.ToString() + CamID+"相机链接失败" + ex.Message);
-                主窗体.AlarmList.Add(System.DateTime.Now.ToString() + CamID+ "相机链接失败" + ex.Message);
+                MainForm.AlarmList.Add(System.DateTime.Now.ToString() + CamID+ "相机链接失败" + ex.Message);
                 return false;
             }
 
@@ -64,7 +64,7 @@ namespace WY_App.Utility
                     {
 
                         LogHelper.Log.WriteError(System.DateTime.Now.ToString() + "相机1链接成功");
-                        主窗体.AlarmList.Add(System.DateTime.Now.ToString() + "相机1链接成功");
+                        MainForm.AlarmList.Add(System.DateTime.Now.ToString() + "相机1链接成功");
                     }
                 }              
                 while (!CamConnect[1])
@@ -77,7 +77,7 @@ namespace WY_App.Utility
                     else
                     {
                         LogHelper.Log.WriteError(System.DateTime.Now.ToString() + "相机2链接成功");
-                        主窗体.AlarmList.Add(System.DateTime.Now.ToString() + "相机2链接成功");
+                        MainForm.AlarmList.Add(System.DateTime.Now.ToString() + "相机2链接成功");
                     }
                 }
                 while (!CamConnect[2])
@@ -91,7 +91,7 @@ namespace WY_App.Utility
                     {
 
                         LogHelper.Log.WriteError(System.DateTime.Now.ToString() + "相机3链接成功");
-                        主窗体.AlarmList.Add(System.DateTime.Now.ToString() + "相机3链接成功");
+                        MainForm.AlarmList.Add(System.DateTime.Now.ToString() + "相机3链接成功");
                     }
                 }
             }
@@ -116,7 +116,7 @@ namespace WY_App.Utility
             HOperatorSet.GrabImageStart(hv_AcqHandle, -1);
             while (true)
             {
-                HOperatorSet.GrabImageAsync(out ho_Image, hv_AcqHandle, -1);
+                HOperatorSet.GrabImage(out ho_Image, hv_AcqHandle);
                 hWindow.DispObj(ho_Image);
             }    
         }
@@ -148,10 +148,10 @@ namespace WY_App.Utility
         {
             HOperatorSet.SetFramegrabberParam(hv_AcqHandle, "TriggerMode", "On");
         }
-        public static void SetFramegrabberParam(HTuple hv_AcqHandle)
+        public static void SetFramegrabberParam(int i, HTuple hv_AcqHandle)
         {
-            HOperatorSet.SetFramegrabberParam(hv_AcqHandle, "gain", Parameter.cameraParam.Gain[0]);
-            HOperatorSet.SetFramegrabberParam(hv_AcqHandle, "ExposureTime", Parameter.cameraParam.Shutter[0]);
+            //HOperatorSet.SetFramegrabberParam(hv_AcqHandle, "gain", Parameter.cameraParam.Gain[i]);
+            HOperatorSet.SetFramegrabberParam(hv_AcqHandle, "ExposureTime", Parameter.cameraParam.Shutter[i]);
 
         }
         public static void GrabImageAsync(HTuple hv_AcqHandle, out HObject himage)
@@ -232,13 +232,13 @@ namespace WY_App.Utility
             //添加测量对象
             HOperatorSet.SetMetrologyModelImageSize(hv_MetrologyHandle, hv_Width[i], hv_Height[i]);
             hv_Index.Dispose();
-            HOperatorSet.AddMetrologyObjectGeneric(hv_MetrologyHandle, "circle", hv_shapeParam, length, 3, 1, 50, new HTuple(), new HTuple(), out hv_Index);
+            HOperatorSet.AddMetrologyObjectGeneric(hv_MetrologyHandle, "circle", hv_shapeParam, length, 3, 2, 20, new HTuple(), new HTuple(), out hv_Index);
             //执行测量，获取边缘点集
             HOperatorSet.SetColor(hWindow, "yellow");
             HOperatorSet.ApplyMetrologyModel(hImage, hv_MetrologyHandle);
             ho_Contours.Dispose(); hv_Row.Dispose(); hv_Column.Dispose();
             HOperatorSet.GetMetrologyObjectMeasures(out ho_Contours, hv_MetrologyHandle, "all", "negative", out hv_Row, out hv_Column);
-            //HOperatorSet.DispObj(ho_Contours, hWindow);
+            HOperatorSet.DispObj(ho_Contours, hWindow);
             HOperatorSet.SetColor(hWindow, "red");
             ho_Cross.Dispose();
             HOperatorSet.GenCrossContourXld(out ho_Cross, hv_Row, hv_Column, 6, 0.785398);
@@ -376,7 +376,7 @@ namespace WY_App.Utility
             // Local iconic variables 
 
             HObject ho_Circle, ho_ImageReduced;
-            HObject ho_ImagePart, ho_ImageMean, ho_Region, ho_ConnectedRegions;
+            HObject ho_ImageMean, ho_Region, ho_ConnectedRegions;
             HObject ho_SelectedRegions;
 
             // Local control variables 
@@ -384,11 +384,11 @@ namespace WY_App.Utility
             HTuple hv_Width = new HTuple(), hv_Height = new HTuple();
             HTuple hv_WindowHandle = new HTuple(), hv_Area = new HTuple();
             HTuple hv_Row = new HTuple(), hv_Column = new HTuple();
+            HTuple hv_Number = new HTuple();
             // Initialize local and output iconic variables 
 
             HOperatorSet.GenEmptyObj(out ho_Circle);
             HOperatorSet.GenEmptyObj(out ho_ImageReduced);
-            HOperatorSet.GenEmptyObj(out ho_ImagePart);
             HOperatorSet.GenEmptyObj(out ho_ImageMean);
             HOperatorSet.GenEmptyObj(out ho_Region);
             HOperatorSet.GenEmptyObj(out ho_ConnectedRegions);
@@ -398,35 +398,37 @@ namespace WY_App.Utility
             HOperatorSet.SetColor(hWindow, "green");
             HOperatorSet.SetDraw(hWindow, "margin");
             ho_Circle.Dispose();
-            HOperatorSet.GenCircle(out ho_Circle, cricle.Row, cricle.Colum, cricle.Radius - 50);
+            HOperatorSet.GenCircle(out ho_Circle, cricle.Row, cricle.Colum, cricle.Radius);
             HOperatorSet.DispObj(ho_Circle, hWindow);
             ho_ImageReduced.Dispose();
-            HOperatorSet.ReduceDomain(hImage, ho_Circle, out ho_ImageReduced);
-            ho_ImagePart.Dispose();
+            HOperatorSet.ReduceDomain(hImage, ho_Circle, out ho_ImageReduced);           
             ho_ImageMean.Dispose();
-            HOperatorSet.MeanImage(ho_ImageReduced, out ho_ImageMean, cricle.ThresholdLow, cricle.ThresholdHigh);
+            HOperatorSet.MeanImage(ho_ImageReduced, out ho_ImageMean, cricle.ThresholdHigh, cricle.ThresholdHigh);
             ho_Region.Dispose();
-            HOperatorSet.DynThreshold(ho_ImageReduced, ho_ImageMean, out ho_Region, cricle.ThresholdLow, "light");
+            HOperatorSet.DynThreshold(ho_ImageReduced, ho_ImageMean, out ho_Region, cricle.ThresholdLow, "not_equal");
             ho_ConnectedRegions.Dispose();
             HOperatorSet.Connection(ho_Region, out ho_ConnectedRegions);
-            hv_Area.Dispose(); hv_Row.Dispose(); hv_Column.Dispose();
-            HOperatorSet.AreaCenter(ho_ConnectedRegions, out hv_Area, out hv_Row, out hv_Column);
-            //HOperatorSet.DispObj(ho_ImagePart, hWindow);
             ho_SelectedRegions.Dispose();
             HOperatorSet.SelectShape(ho_ConnectedRegions, out ho_SelectedRegions, "area", "and", cricle.AreaLow, cricle.AreaHigh);
             HOperatorSet.SetColor(hWindow, "red");
             HOperatorSet.SetDraw(hWindow, "margin");
-
             HOperatorSet.DispObj(ho_SelectedRegions, hWindow);
-
+            hv_Number.Dispose();
+            HOperatorSet.CountObj(ho_SelectedRegions, out hv_Number);
+            if (hv_Number == 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
             ho_Circle.Dispose();
             ho_ImageReduced.Dispose();
-            ho_ImagePart.Dispose();
             ho_ImageMean.Dispose();
             ho_Region.Dispose();
             ho_ConnectedRegions.Dispose();
             ho_SelectedRegions.Dispose();
-
             hv_Width.Dispose();
             hv_Height.Dispose();
             hv_WindowHandle.Dispose();
@@ -445,6 +447,7 @@ namespace WY_App.Utility
 
             HTuple hv_Area = new HTuple(), hv_Row1 = new HTuple();
             HTuple hv_Column1 = new HTuple();
+            HTuple hv_Number = new HTuple();
             // Initialize local and output iconic variables 
             HOperatorSet.GenEmptyObj(out ho_Circle);
             HOperatorSet.GenEmptyObj(out ho_ImageReduced);
@@ -479,7 +482,17 @@ namespace WY_App.Utility
             HOperatorSet.DispObj(ho_SelectedRegions, hWindow);
             hv_Area.Dispose(); hv_Row1.Dispose(); hv_Column1.Dispose();
             HOperatorSet.AreaCenter(ho_SelectedRegions, out hv_Area, out hv_Row1, out hv_Column1);
-
+            hv_Number.Dispose();
+            HOperatorSet.CountObj(ho_SelectedRegions, out hv_Number);
+            if (hv_Number == 0)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+            hv_Number.Dispose();
             ho_Circle.Dispose();
             ho_ImageReduced.Dispose();
             ho_Region.Dispose();

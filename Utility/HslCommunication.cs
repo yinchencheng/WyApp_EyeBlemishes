@@ -19,21 +19,22 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using static WY_App.Utility.Parameter;
 using static OpenCvSharp.FileStorage;
+using static System.Collections.Specialized.BitVector32;
+using Newtonsoft.Json.Linq;
 
 namespace WY_App
 {
     internal class HslCommunication
     {
         public static OperateResult _connected ;
-        public static NetworkDeviceBase _NetworkTcpDevice;
+        static NetworkDeviceBase _NetworkTcpDevice;
         static ISyncGpasciiCommunicationInterface communication = null;
         deviceProperties currentDeviceProp = new deviceProperties();
         deviceProperties currentDevProp = new deviceProperties();
         string commands = String.Empty;
-        public static string response = String.Empty;
-
+        string response = String.Empty;
         public static bool plc_connect_result = false;
-
+        public static ModbusRtu busRtuClient;
 
         public HslCommunication()
         {
@@ -60,7 +61,7 @@ namespace WY_App
             if (!Authorization.SetAuthorizationCode("f562cc4c-4772-4b32-bdcd-f3e122c534e3"))
             {
                 LogHelper.Log.WriteError("HslCommunication 组件认证失败，组件只能使用8小时!");
-                主窗体.AlarmList.Add("HslCommunication 组件认证失败，组件只能使用8小时!");
+                MainForm.AlarmList.Add("HslCommunication 组件认证失败，组件只能使用8小时!");
             }           
             while (!plc_connect_result)
             {
@@ -138,32 +139,66 @@ namespace WY_App
                         plc_connect_result = _connected.IsSuccess;
                     }
                     //新增通讯添加else if判断创建连接
-
+                    else if ("ModbusRtu".Equals(Parameter.commministion.PlcType))
+                    {
+                        try
+                        {
+                            busRtuClient = new ModbusRtu(Convert.ToByte(Parameter.commministion.PlcDevice));
+                            busRtuClient.SerialPortInni(sp =>
+                            {
+                                sp.PortName = Parameter.commministion.PlcIpAddress;
+                                sp.BaudRate = Parameter.commministion.PlcIpPort;
+                                sp.DataBits = 8;
+                                sp.StopBits = System.IO.Ports.StopBits.One;
+                                sp.Parity = System.IO.Ports.Parity.None;                              
+                            });
+                            busRtuClient.Open(); // 打开
+                            plc_connect_result = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            plc_connect_result = false;
+                        }
+                        if (plc_connect_result)
+                        {
+                            LogHelper.Log.WriteInfo(Parameter.commministion.PlcType + "串口" + Parameter.commministion.PlcIpAddress + "打开成功,波特率:" + Parameter.commministion.PlcIpPort);
+                            MainForm.AlarmList.Add(Parameter.commministion.PlcType + "串口" + Parameter.commministion.PlcIpAddress + "打开成功,波特率:" + Parameter.commministion.PlcIpPort);
+                            plc_connect_result = true;
+                        }
+                        else
+                        {
+                            LogHelper.Log.WriteError(Parameter.commministion.PlcType + "串口" + Parameter.commministion.PlcIpAddress + "打开失败,波特率:" + Parameter.commministion.PlcIpPort);
+                            MainForm.AlarmList.Add(Parameter.commministion.PlcType + "串口" + Parameter.commministion.PlcIpAddress + "打开失败,波特率:" + Parameter.commministion.PlcIpPort);
+                            plc_connect_result = false;
+                        }
+                        
+                    }
                     //Parameter.PlcType字符错误或未定义
                     else
                     {
                         LogHelper.Log.WriteError(Parameter.commministion.PlcType + "类型未定义!!!");
-                        主窗体.AlarmList.Add(Parameter.commministion.PlcType + "类型未定义!!!");
+                        MainForm.AlarmList.Add(Parameter.commministion.PlcType + "类型未定义!!!");
                         plc_connect_result = false;
+                       
                     }
                    
                     if (plc_connect_result)
                     {
                         LogHelper.Log.WriteInfo(Parameter.commministion.PlcType + "连接成功:IP" + Parameter.commministion.PlcIpAddress + "  Port:" + Parameter.commministion.PlcIpPort);
-                        主窗体.AlarmList.Add(Parameter.commministion.PlcType + "连接成功:IP" + Parameter.commministion.PlcIpAddress + "  Port:" + Parameter.commministion.PlcIpPort);
+                        MainForm.AlarmList.Add(Parameter.commministion.PlcType + "连接成功:IP" + Parameter.commministion.PlcIpAddress + "  Port:" + Parameter.commministion.PlcIpPort);
                         plc_connect_result = true;
                     }
                     else
                     {
                         LogHelper.Log.WriteError(Parameter.commministion.PlcType + "连接失败:IP" + Parameter.commministion.PlcIpAddress + "  Port:" + Parameter.commministion.PlcIpPort);
-                        主窗体.AlarmList.Add(Parameter.commministion.PlcType + "连接失败:IP" + Parameter.commministion.PlcIpAddress + "  Port:" + Parameter.commministion.PlcIpPort);
+                        MainForm.AlarmList.Add(Parameter.commministion.PlcType + "连接失败:IP" + Parameter.commministion.PlcIpAddress + "  Port:" + Parameter.commministion.PlcIpPort);
                         plc_connect_result = false;
                     }
                 }
                 catch (Exception ex)
                 {
                     LogHelper.Log.WriteError(Parameter.commministion.PlcType + "初始化失败:", ex.Message);
-                    主窗体.AlarmList.Add(Parameter.commministion.PlcType + "初始化失败:"+ ex.Message);
+                    MainForm.AlarmList.Add(Parameter.commministion.PlcType + "初始化失败:"+ ex.Message);
                     plc_connect_result = false;
                 }
             }
@@ -174,6 +209,30 @@ namespace WY_App
                 {
                     plc_connect_result = ReadWritePmacVariables(Parameter.plcParams.HeartBeatAdd);
                     Thread.Sleep(5000);
+                }
+                else if ("ModbusRtu".Equals(Parameter.commministion.PlcType))
+                {
+                    try
+                    {
+                        if (Parameter.plcParams.HeartBeatAdd != null || Parameter.plcParams.HeartBeatAdd != "")
+                        {
+                            _connected = busRtuClient.Write(Parameter.plcParams.HeartBeatAdd, 1);
+                            Thread.Sleep(1000);
+                            _connected = busRtuClient.Write(Parameter.plcParams.HeartBeatAdd, 0);
+                            Thread.Sleep(1000);
+                            plc_connect_result = true;
+                        }
+                        else
+                        {
+                            Thread.Sleep(100000);
+                        }
+
+                    }
+                    catch
+                    {
+                        busRtuClient.Dispose();
+                        plc_connect_result = false;
+                    }
                 }
                 else
                 {
@@ -212,6 +271,10 @@ namespace WY_App
                     {
 
                     }
+                    else if ("ModbusRut".Equals(Parameter.commministion.PlcType))
+                    {
+
+                    }
                     else
                     {
                         
@@ -227,7 +290,7 @@ namespace WY_App
 
 
         //对终端操作的通用方法/
-        public static bool ReadWritePmacVariables(string command)
+        public bool ReadWritePmacVariables(string command)
         {
             var commads = new List<string>();
             List<string> responses;
@@ -246,18 +309,134 @@ namespace WY_App
         }
 
 
-        public static  double plc_Readdouble(string ReadAddress)
+        public void Read(string address,int value)
         {
-            return -1;
-        }
-        public static void plc_WriteDouble()
-        {
+            if (plc_connect_result)
+            {
+                if ("Omron.PMAC.CK3M".Equals(Parameter.commministion.PlcType))
+                {
 
+                }
+                else if ("ModbusRut".Equals(Parameter.commministion.PlcType))
+                {
+                    busRtuClient.Write(address, value);
+                }
+                else
+                {
+                    _NetworkTcpDevice.Write(address, value);
+                }
+            }
         }
-
-        public static void plc_WriteBool()
+        public static string  Read(string address)
         {
-           
+            if (plc_connect_result)
+            {
+                if ("Omron.PMAC.CK3M".Equals(Parameter.commministion.PlcType))
+                {
+                    return null;
+                }
+                else if ("ModbusRut".Equals(Parameter.commministion.PlcType))
+                {
+
+                    string value = busRtuClient.ReadUInt16(address).ToString();
+                    return value;
+                }
+                else
+                {
+                    string value = _NetworkTcpDevice.ReadUInt16(address).ToString();
+                    return value;
+                }
+            }
+            else
+                return null;
+        }
+        public static UInt16 ReadUInt16(string address)
+        {
+            if (plc_connect_result)
+            {
+                if ("Omron.PMAC.CK3M".Equals(Parameter.commministion.PlcType))
+                {
+                    return 0;
+                }
+                else if ("ModbusRtu".Equals(Parameter.commministion.PlcType))
+                {
+
+                    UInt16 value = busRtuClient.ReadUInt16(address).Content;
+                    return value;
+                }
+                else
+                {
+                    UInt16 value = _NetworkTcpDevice.ReadUInt16(address).Content;
+                    return value;
+                }
+            }
+            else
+                return 0;
+        }
+        public static void Write(string address, bool value)
+        {
+            if (plc_connect_result)
+            {
+                if ("Omron.PMAC.CK3M".Equals(Parameter.commministion.PlcType))
+                {
+
+                }
+                else if ("ModbusRtu".Equals(Parameter.commministion.PlcType))
+                {
+
+                    _connected = busRtuClient.Write(address, value);
+                    LogHelper.Log.WriteError(Parameter.commministion.PlcType + "数据写入:", _connected.Message + ",地址:"+address + "值:"+value);
+                    MainForm.AlarmList.Add(Parameter.commministion.PlcType + "数据写入:"+ _connected.Message + ",地址:" + address + "值:" + value);
+
+                }
+                else
+                {
+                    _NetworkTcpDevice.Write(address, value);
+                    LogHelper.Log.WriteError(Parameter.commministion.PlcType + "数据写入:", _connected.Message + ",地址:" + address + "值:" + value);
+                    MainForm.AlarmList.Add(Parameter.commministion.PlcType + "数据写入:" + _connected.Message + ",地址:" + address + "值:" + value);
+                }
+            }
+        }
+        public static void Write(string address, int value)
+        {
+            if (plc_connect_result)
+            {
+                if ("Omron.PMAC.CK3M".Equals(Parameter.commministion.PlcType))
+                {
+
+                }
+                else if ("ModbusRtu".Equals(Parameter.commministion.PlcType))
+                {
+
+                    busRtuClient.Write(address, value);
+                    LogHelper.Log.WriteError(Parameter.commministion.PlcType + "数据写入:", _connected.Message + ",地址:" + address + "值:" + value);
+                    MainForm.AlarmList.Add(Parameter.commministion.PlcType + "数据写入:" + _connected.Message + ",地址:" + address + "值:" + value);
+                }
+                else
+                {
+                    _NetworkTcpDevice.Write(address, value);
+                    LogHelper.Log.WriteError(Parameter.commministion.PlcType + "数据写入:", _connected.Message + ",地址:" + address + "值:" + value);
+                    MainForm.AlarmList.Add(Parameter.commministion.PlcType + "数据写入:" + _connected.Message + ",地址:" + address + "值:" + value);
+                }
+            }
+        }
+        public static void Write(string address, string value)
+        {
+            if (plc_connect_result)
+            {
+                if ("Omron.PMAC.CK3M".Equals(Parameter.commministion.PlcType))
+                {
+                    busRtuClient.Write(address, value);
+                    LogHelper.Log.WriteError(Parameter.commministion.PlcType + "数据写入:", _connected.Message + ",地址:" + address + "值:" + value);
+                    MainForm.AlarmList.Add(Parameter.commministion.PlcType + "数据写入:" + _connected.Message + ",地址:" + address + "值:" + value);
+                }
+                else
+                {
+                    _NetworkTcpDevice.Write(address, value);
+                    LogHelper.Log.WriteError(Parameter.commministion.PlcType + "数据写入:", _connected.Message + ",地址:" + address + "值:" + value);
+                    MainForm.AlarmList.Add(Parameter.commministion.PlcType + "数据写入:" + _connected.Message + ",地址:" + address + "值:" + value);
+                }
+            }
         }
     }
 }

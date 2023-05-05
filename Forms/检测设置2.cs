@@ -40,7 +40,7 @@ namespace WY_App
         {
             InitializeComponent();
             HOperatorSet.SetPart(hWindowControl1.HalconWindow, 0, 0, -1, -1);//设置窗体的规格 
-            hWindowControl1.HalconWindow.DispObj(主窗体.hImage[2]);
+            hWindowControl1.HalconWindow.DispObj(MainForm.hImage[2]);
         }
 
         private void panel4_MouseMove(object sender, MouseEventArgs e)
@@ -81,7 +81,7 @@ namespace WY_App
             {
                 //picture0.ImageLocation = openfile.FileName;
                 //MatImage = Cv2.ImRead(openfile.FileName);
-                Halcon.ImgDisplay(uiComboBox1.SelectedIndex + 2, openfile.FileName, hWindowControl1.HalconWindow, ref 主窗体.hImage[uiComboBox1.SelectedIndex + 2]); 
+                Halcon.ImgDisplay(uiComboBox1.SelectedIndex + 2, openfile.FileName, hWindowControl1.HalconWindow, ref MainForm.hImage[uiComboBox1.SelectedIndex + 2]); 
             }
             openfile.Dispose();
         }
@@ -89,14 +89,14 @@ namespace WY_App
 
         private void btn_SaveParams_Click(object sender, EventArgs e)
         {
-            XMLHelper.serialize<Parameter.Specifications>(Parameter.specifications, "Parameter/Specifications.xml");
+            XMLHelper.serialize<Parameter.Specifications>(Parameter.specifications, Parameter.commministion.productName + "/Specifications.xml");
         }
 
         private void 检测设置_Load(object sender, EventArgs e)
         {
             uiComboBox1.SelectedIndex = 0;
             HOperatorSet.SetPart(hWindowControl1.HalconWindow, 0, 0, -1, -1);//设置窗体的规格 
-            hWindowControl1.HalconWindow.DispObj(主窗体.hImage[2]);
+            hWindowControl1.HalconWindow.DispObj(MainForm.hImage[2]);
             num_AreaHigh.Value = Parameter.specifications.圆形检测[2].AreaHigh;
             num_AreaLow.Value = Parameter.specifications.圆形检测[2].AreaLow;
             num_ThresholdHigh.Value = Parameter.specifications.圆形检测[2].ThresholdHigh;
@@ -127,10 +127,10 @@ namespace WY_App
         {
             System.Diagnostics.Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start(); //  开始监视代码运行时间
-            HOperatorSet.DispObj(主窗体.hImage[uiComboBox1.SelectedIndex + 2], hWindowControl1.HalconWindow);
+            HOperatorSet.DispObj(MainForm.hImage[uiComboBox1.SelectedIndex + 2], hWindowControl1.HalconWindow);
             try
             {
-                Halcon.DetectionCricleHObject(2, hWindowControl1.HalconWindow, 主窗体.hImage[uiComboBox1.SelectedIndex + 2], Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex + 2], Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex + 2].Row, Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex + 2].Colum, 50, ref pointReaultCricle);
+                Halcon.DetectionCricleHObject(2, hWindowControl1.HalconWindow, MainForm.hImage[uiComboBox1.SelectedIndex + 2], Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex + 2], Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex + 2].Row, Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex + 2].Colum, 20, ref pointReaultCricle);
 
             }
             catch
@@ -152,18 +152,18 @@ namespace WY_App
 
         private void uiButton1_Click(object sender, EventArgs e)
         {
-            HOperatorSet.DispObj(主窗体.hImage[uiComboBox1.SelectedIndex + 2], hWindowControl1.HalconWindow);
-            Halcon.DetectionDrawCriclaAOI(hWindowControl1.HalconWindow, 主窗体.hImage[uiComboBox1.SelectedIndex + 2], ref Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex+2]);
+            HOperatorSet.DispObj(MainForm.hImage[uiComboBox1.SelectedIndex + 2], hWindowControl1.HalconWindow);
+            Halcon.DetectionDrawCriclaAOI(hWindowControl1.HalconWindow, MainForm.hImage[uiComboBox1.SelectedIndex + 2], ref Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex+2]);
         }
 
         private void uiButton13_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start(); //  开始监视代码运行时间
-            HOperatorSet.DispObj(主窗体.hImage[uiComboBox1.SelectedIndex + 2], hWindowControl1.HalconWindow);
+            HOperatorSet.DispObj(MainForm.hImage[uiComboBox1.SelectedIndex + 2], hWindowControl1.HalconWindow);
             bool DetectionResult = true;
             HOperatorSet.SetPart(hWindowControl1.HalconWindow, 0, 0, -1, -1);
-            Detection(uiComboBox1.SelectedIndex, hWindowControl1.HalconWindow, 主窗体.hImage[uiComboBox1.SelectedIndex + 2], ref DetectionResult);
+            Detection(uiComboBox1.SelectedIndex, hWindowControl1.HalconWindow, MainForm.hImage[uiComboBox1.SelectedIndex + 2], ref DetectionResult);
             stopwatch.Stop(); //  停止监视
             TimeSpan timespan = stopwatch.Elapsed; //  获取当前实例测量得出的总时间
             double milliseconds = timespan.TotalMilliseconds;  //  总毫秒数           
@@ -174,29 +174,22 @@ namespace WY_App
 
         public static void Detection(int i,HWindow hWindow, HObject hImage, ref bool DetectionResult)
         {
+
             try
             {
-                try
-                {
-                    pointReaultCricle = Parameter.specifications.圆形检测[i + 2];
-                    Halcon.DetectionCricleHObject(i+2, hWindow, hImage, Parameter.specifications.圆形检测[i+2], Parameter.specifications.圆形检测[i+2].Row, Parameter.specifications.圆形检测[i+2].Colum, 50, ref pointReaultCricle);
-                    HOperatorSet.SetTposition(hWindow, pointReaultCricle.Row, pointReaultCricle.Colum);
-                    HOperatorSet.WriteString(hWindow, "半径:" + pointReaultCricle.Radius.ToString("0.0000"));
+                pointReaultCricle = Parameter.specifications.圆形检测[i + 2];
+                Halcon.DetectionCricleHObject(i + 2, hWindow, hImage, Parameter.specifications.圆形检测[i + 2], Parameter.specifications.圆形检测[i + 2].Row, Parameter.specifications.圆形检测[i + 2].Colum, 30, ref pointReaultCricle);
+                HOperatorSet.SetTposition(hWindow, pointReaultCricle.Row+ pointReaultCricle.Radius, pointReaultCricle.Colum);
+                HOperatorSet.WriteString(hWindow, "半径:" + pointReaultCricle.Radius.ToString("0.0000"));
 
-                    Halcon.DetectionCricle2(0, hWindow, hImage, pointReaultCricle, ref DetectionResult);
-                }
-                catch
-                {
-
-                }
+                Halcon.DetectionCricle2(0, hWindow, hImage, pointReaultCricle, ref DetectionResult);
             }
-            catch
+            catch (Exception ex)
             {
-
+                MainForm.AlarmList.Add("检测2Error;" + ex.Message);
+                DetectionResult = false;
             }
-
-
-
+           
         }
 
         private void uiDoubleUpDown4_ValueChanged(object sender, double value)
@@ -222,7 +215,7 @@ namespace WY_App
         private void uiComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             HOperatorSet.SetPart(hWindowControl1.HalconWindow, 0, 0, -1, -1);//设置窗体的规格 
-            HOperatorSet.DispObj(主窗体.hImage[uiComboBox1.SelectedIndex + 2], hWindowControl1.HalconWindow);
+            HOperatorSet.DispObj(MainForm.hImage[uiComboBox1.SelectedIndex + 2], hWindowControl1.HalconWindow);
             num_AreaHigh.Value = Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex + 2].AreaHigh;
             num_AreaLow.Value = Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex + 2].AreaLow;
             num_ThresholdHigh.Value = Parameter.specifications.圆形检测[uiComboBox1.SelectedIndex + 2].ThresholdHigh;

@@ -284,7 +284,11 @@ namespace WY_App.Utility
             /// path
             /// </summary>
             public string ImageSavePath;
-
+            /// <summary>
+            /// path
+            /// </summary>
+            public string productName;
+            public string DeviceID;
             /// <summary>
             /// 联机参数设置
             /// </summary>
@@ -326,7 +330,10 @@ namespace WY_App.Utility
 
                 ImagePath = @"D:\VisionDetect\InspectImage\";
                 ImageSavePath = @"D:\Image\";
-            }
+
+                productName = "80";
+                DeviceID = "";
+        }
         }
 
         public static Commministion commministion = new Commministion();
@@ -337,17 +344,41 @@ namespace WY_App.Utility
             public string Completion1;
             public string Trigger_Detection2;
             public string Completion2;
+            public string Trigger_Detection3;
+            public string Completion3;
             public string StartAdd;
             public string HeartBeatAdd;
+
+            public string Position1;
+            public string Position2;
+            public string Position3;
+            public string Position4;
+
+            public int Position1Value;
+            public int Position2Value;
+            public int Position3Value;
+            public int Position4Value;
 
             public PLCParams()
             {
                 Trigger_Detection1 = "D100";
-                Completion1 = "D102";
-                StartAdd = "D104";
-                Trigger_Detection1 = "D106";
-                Completion1 = "D108";
-                HeartBeatAdd = "";
+                Completion1 = "D102";             
+                Trigger_Detection2 = "D104";
+                Completion2 = "D106";
+                Trigger_Detection3 = "D108";
+                Completion3 = "D110";
+                HeartBeatAdd = "D112";
+                StartAdd = "D114";
+
+                Position1 = "100";
+                Position2 = "100";
+                Position3 = "100";
+                Position4 = "100";
+
+                Position1Value = 1000;
+                Position2Value = 2000;
+                Position3Value = 3000;
+                Position4Value = 4000;
             }
         }
 

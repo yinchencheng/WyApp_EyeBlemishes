@@ -57,15 +57,25 @@ namespace WY_App
 
             txt_Trigger_Detection1.Enabled = true;
             txt_Trigger_Detection2.Enabled = true;
+            txt_Trigger_Detection3.Enabled = true;
             txt_StartAdd.Enabled = true;
+            txt_HeartBeatAdd.Enabled = true;
             txt_Completion_Add1.Enabled = true;
             txt_Completion_Add2.Enabled = true;
+            txt_Completion_Add3.Enabled = true;
             num_LogSaveDays.Enabled = true;
 
             txt_ImagePath.Enabled = true;
             txt_ImageSavePath.Enabled = true;
             btn_Save.Enabled = true;
-
+            Position1.Enabled = true;
+            Position2.Enabled = true;
+            Position3.Enabled = true;
+            Position4.Enabled = true;
+            DoubleUpDown1.Enabled = true;
+            DoubleUpDown2.Enabled = true;
+            DoubleUpDown3.Enabled = true;
+            DoubleUpDown4.Enabled = true;
         }
 
         private void ParamSettings_Load(object sender, EventArgs e)
@@ -91,9 +101,22 @@ namespace WY_App
 
             txt_Trigger_Detection1.Text = Parameter.plcParams.Trigger_Detection1;
             txt_Trigger_Detection2.Text = Parameter.plcParams.Trigger_Detection2;
+            txt_Trigger_Detection3.Text = Parameter.plcParams.Trigger_Detection3;
             txt_StartAdd.Text = Parameter.plcParams.StartAdd;
             txt_Completion_Add1.Text = Parameter.plcParams.Completion1;
             txt_Completion_Add2.Text = Parameter.plcParams.Completion2;
+            txt_Completion_Add3.Text = Parameter.plcParams.Completion3;
+            txt_HeartBeatAdd.Text = Parameter.plcParams.HeartBeatAdd;
+
+            Position1.Text=Parameter.plcParams.Position1;
+            Position2.Text=Parameter.plcParams.Position2;
+            Position3.Text=Parameter.plcParams.Position3;
+            Position4.Text=Parameter.plcParams.Position4;
+
+            DoubleUpDown1.Value=Parameter.plcParams.Position1Value;
+            DoubleUpDown2.Value=Parameter.plcParams.Position2Value;
+            DoubleUpDown3.Value=Parameter.plcParams.Position3Value;
+            DoubleUpDown4.Value=Parameter.plcParams.Position4Value;
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
@@ -119,11 +142,28 @@ namespace WY_App
 
             XMLHelper.serialize<Parameter.Commministion>(Parameter.commministion, "Parameter/Commministion.xml");
 
+            Parameter.plcParams.StartAdd = txt_StartAdd.Text;
+            Parameter.plcParams.HeartBeatAdd = txt_HeartBeatAdd.Text;
             Parameter.plcParams.Trigger_Detection1 = txt_Trigger_Detection1.Text;
             Parameter.plcParams.Trigger_Detection2 = txt_Trigger_Detection2.Text;
-            Parameter.plcParams.StartAdd= txt_StartAdd.Text;
+            Parameter.plcParams.Trigger_Detection3 = txt_Trigger_Detection3.Text;
+            
             Parameter.plcParams.Completion1 = txt_Completion_Add1.Text;
             Parameter.plcParams.Completion2 = txt_Completion_Add2.Text;
+            Parameter.plcParams.Completion3 = txt_Completion_Add3.Text;
+
+            Parameter.plcParams.Position1 = Position1.Text;
+            Parameter.plcParams.Position2 = Position2.Text;
+            Parameter.plcParams.Position3 = Position3.Text;
+            Parameter.plcParams.Position4 = Position4.Text;
+            Parameter.plcParams.Position1Value = (int)DoubleUpDown1.Value;
+            Parameter.plcParams.Position2Value = (int)DoubleUpDown2.Value;
+            Parameter.plcParams.Position3Value = (int)DoubleUpDown3.Value;
+            Parameter.plcParams.Position4Value = (int)DoubleUpDown4.Value;
+            HslCommunication.Write(Parameter.plcParams.Position1, (int)DoubleUpDown1.Value);
+            HslCommunication.Write(Parameter.plcParams.Position2, (int)DoubleUpDown2.Value);
+            HslCommunication.Write(Parameter.plcParams.Position3, (int)DoubleUpDown3.Value);
+            HslCommunication.Write(Parameter.plcParams.Position4, (int)DoubleUpDown4.Value);
             XMLHelper.serialize<Parameter.PLCParams>(Parameter.plcParams, "Parameter/PLCParams.xml");
             MessageBox.Show("系统参数修改，请重启软件");
             this.Close();
@@ -140,6 +180,11 @@ namespace WY_App
         }
 
         private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel8_Paint(object sender, PaintEventArgs e)
         {
 
         }

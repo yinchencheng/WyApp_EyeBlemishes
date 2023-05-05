@@ -35,7 +35,7 @@ namespace WY_App
 				}
                 else if (主窗体.formloadIndex == 2)
                 {
-                    检测设置1 flg = new 检测设置1();
+                    相机配置 flg = new 相机配置();
                     flg.ShowDialog();
 				}
                 else if (主窗体.formloadIndex == 3)

@@ -46,10 +46,12 @@
             this.btn_Change = new Sunny.UI.UIButton();
             this.btn_Save = new Sunny.UI.UIButton();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.num_LogSaveDays = new Sunny.UI.UIDoubleUpDown();
             this.txt_ImageSavePath = new Sunny.UI.UITextBox();
             this.txt_ImagePath = new Sunny.UI.UITextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.chk_ClientEnabled = new System.Windows.Forms.CheckBox();
             this.num_ClientPort = new Sunny.UI.UIDoubleUpDown();
@@ -57,23 +59,29 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.num_LogSaveDays = new Sunny.UI.UIDoubleUpDown();
+            this.txt_Completion_Add3 = new Sunny.UI.UITextBox();
+            this.txt_HeartBeatAdd = new Sunny.UI.UITextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txt_Trigger_Detection3 = new Sunny.UI.UITextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txt_Completion_Add2 = new Sunny.UI.UITextBox();
+            this.txt_Trigger_Detection2 = new Sunny.UI.UITextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.txt_Completion_Add1 = new Sunny.UI.UITextBox();
             this.txt_StartAdd = new Sunny.UI.UITextBox();
             this.txt_Trigger_Detection1 = new Sunny.UI.UITextBox();
-            this.txt_Trigger_Detection2 = new Sunny.UI.UITextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txt_PlcType = new Sunny.UI.UIComboBox();
             this.chk_PLCEnabled = new System.Windows.Forms.CheckBox();
             this.num_PLCPort = new Sunny.UI.UIDoubleUpDown();
             this.txt_PlcIpAddress = new Sunny.UI.UITextBox();
             this.txt_PlcDevice = new Sunny.UI.UITextBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.txt_PlcType = new Sunny.UI.UITextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -104,8 +112,19 @@
             this.uiTextBox3 = new Sunny.UI.UITextBox();
             this.uiTextBox2 = new Sunny.UI.UITextBox();
             this.txt_PointMoveStepAdd = new Sunny.UI.UITextBox();
-            this.txt_Completion_Add2 = new Sunny.UI.UITextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.Position2 = new Sunny.UI.UITextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.Position4 = new Sunny.UI.UITextBox();
+            this.Position1 = new Sunny.UI.UITextBox();
+            this.Position3 = new Sunny.UI.UITextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.DoubleUpDown2 = new Sunny.UI.UIDoubleUpDown();
+            this.DoubleUpDown4 = new Sunny.UI.UIDoubleUpDown();
+            this.DoubleUpDown1 = new Sunny.UI.UIDoubleUpDown();
+            this.DoubleUpDown3 = new Sunny.UI.UIDoubleUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -116,6 +135,7 @@
             this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuElipse1
@@ -138,7 +158,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.75701F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.24299F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(671, 428);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(948, 558);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -150,8 +170,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel2.Controls.Add(this.btn_Close_System, 6, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel4, 4, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -160,7 +180,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(671, 66);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(948, 89);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // btn_Close_System
@@ -172,7 +192,7 @@
             this.btn_Close_System.FillPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btn_Close_System.FillSelectedColor = System.Drawing.Color.Red;
             this.btn_Close_System.Font = new System.Drawing.Font("楷体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_Close_System.Location = new System.Drawing.Point(601, 3);
+            this.btn_Close_System.Location = new System.Drawing.Point(895, 3);
             this.btn_Close_System.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_Close_System.Name = "btn_Close_System";
             this.btn_Close_System.RectColor = System.Drawing.Color.Red;
@@ -180,7 +200,7 @@
             this.btn_Close_System.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btn_Close_System.RectPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btn_Close_System.RectSelectedColor = System.Drawing.Color.Red;
-            this.btn_Close_System.Size = new System.Drawing.Size(67, 60);
+            this.btn_Close_System.Size = new System.Drawing.Size(50, 51);
             this.btn_Close_System.Style = Sunny.UI.UIStyle.Custom;
             this.btn_Close_System.TabIndex = 0;
             this.btn_Close_System.Text = "×";
@@ -193,7 +213,7 @@
             this.panel4.Location = new System.Drawing.Point(32, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(534, 66);
+            this.panel4.Size = new System.Drawing.Size(811, 89);
             this.panel4.TabIndex = 11;
             this.panel4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel4_MouseDown);
             this.panel4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel4_MouseMove);
@@ -204,13 +224,13 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.33934F));
             this.tableLayoutPanel3.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 79);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 102);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 97.68638F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.313625F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(665, 346);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(942, 453);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // panel1
@@ -220,11 +240,12 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(665, 337);
+            this.panel1.Size = new System.Drawing.Size(942, 442);
             this.panel1.TabIndex = 0;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel8);
             this.groupBox1.Controls.Add(this.panel5);
             this.groupBox1.Controls.Add(this.btn_Change);
             this.groupBox1.Controls.Add(this.btn_Save);
@@ -238,7 +259,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox1.Size = new System.Drawing.Size(665, 337);
+            this.groupBox1.Size = new System.Drawing.Size(942, 442);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数设置";
@@ -250,7 +271,7 @@
             this.panel5.Controls.Add(this.txt_ServerIP);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.label11);
-            this.panel5.Location = new System.Drawing.Point(226, 193);
+            this.panel5.Location = new System.Drawing.Point(226, 115);
             this.panel5.Margin = new System.Windows.Forms.Padding(0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(214, 100);
@@ -272,6 +293,7 @@
             // 
             this.num_ServerPort.Decimal = 0;
             this.num_ServerPort.DecimalPlaces = 0;
+            this.num_ServerPort.Enabled = false;
             this.num_ServerPort.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.num_ServerPort.Location = new System.Drawing.Point(91, 37);
             this.num_ServerPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -335,7 +357,7 @@
             this.btn_Change.ForeHoverColor = System.Drawing.Color.Gray;
             this.btn_Change.ForePressColor = System.Drawing.Color.DimGray;
             this.btn_Change.ForeSelectedColor = System.Drawing.Color.Silver;
-            this.btn_Change.Location = new System.Drawing.Point(458, 127);
+            this.btn_Change.Location = new System.Drawing.Point(241, 244);
             this.btn_Change.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_Change.Name = "btn_Change";
             this.btn_Change.Size = new System.Drawing.Size(80, 27);
@@ -359,7 +381,7 @@
             this.btn_Save.ForeHoverColor = System.Drawing.Color.Gray;
             this.btn_Save.ForePressColor = System.Drawing.Color.DimGray;
             this.btn_Save.ForeSelectedColor = System.Drawing.Color.Silver;
-            this.btn_Save.Location = new System.Drawing.Point(560, 127);
+            this.btn_Save.Location = new System.Drawing.Point(343, 244);
             this.btn_Save.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(75, 27);
@@ -377,11 +399,31 @@
             this.panel7.Controls.Add(this.label9);
             this.panel7.Controls.Add(this.label10);
             this.panel7.Controls.Add(this.label20);
-            this.panel7.Location = new System.Drawing.Point(445, 25);
+            this.panel7.Location = new System.Drawing.Point(226, 25);
             this.panel7.Margin = new System.Windows.Forms.Padding(0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(214, 90);
             this.panel7.TabIndex = 50;
+            // 
+            // num_LogSaveDays
+            // 
+            this.num_LogSaveDays.Decimal = 0;
+            this.num_LogSaveDays.DecimalPlaces = 0;
+            this.num_LogSaveDays.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.num_LogSaveDays.Location = new System.Drawing.Point(95, 65);
+            this.num_LogSaveDays.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.num_LogSaveDays.Maximum = 65535D;
+            this.num_LogSaveDays.Minimum = 0D;
+            this.num_LogSaveDays.MinimumSize = new System.Drawing.Size(100, 0);
+            this.num_LogSaveDays.Name = "num_LogSaveDays";
+            this.num_LogSaveDays.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.num_LogSaveDays.ShowText = false;
+            this.num_LogSaveDays.Size = new System.Drawing.Size(112, 20);
+            this.num_LogSaveDays.Step = 1D;
+            this.num_LogSaveDays.Style = Sunny.UI.UIStyle.Custom;
+            this.num_LogSaveDays.TabIndex = 46;
+            this.num_LogSaveDays.Text = "uiDoubleUpDown4";
+            this.num_LogSaveDays.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txt_ImageSavePath
             // 
@@ -433,6 +475,16 @@
             this.label10.TabIndex = 18;
             this.label10.Text = "保存路径";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.SystemColors.Control;
+            this.label20.Location = new System.Drawing.Point(11, 69);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(77, 12);
+            this.label20.TabIndex = 45;
+            this.label20.Text = "日志保存天数";
+            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.chk_ClientEnabled);
@@ -440,7 +492,7 @@
             this.panel6.Controls.Add(this.txt_ClientIP);
             this.panel6.Controls.Add(this.label1);
             this.panel6.Controls.Add(this.label2);
-            this.panel6.Location = new System.Drawing.Point(12, 193);
+            this.panel6.Location = new System.Drawing.Point(12, 185);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(214, 100);
@@ -461,6 +513,7 @@
             // 
             this.num_ClientPort.Decimal = 0;
             this.num_ClientPort.DecimalPlaces = 0;
+            this.num_ClientPort.Enabled = false;
             this.num_ClientPort.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.num_ClientPort.Location = new System.Drawing.Point(91, 37);
             this.num_ClientPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -513,49 +566,155 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.txt_Completion_Add3);
+            this.panel3.Controls.Add(this.txt_HeartBeatAdd);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.txt_Trigger_Detection3);
+            this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.txt_Completion_Add2);
+            this.panel3.Controls.Add(this.txt_Trigger_Detection2);
+            this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label18);
             this.panel3.Controls.Add(this.txt_Completion_Add1);
             this.panel3.Controls.Add(this.txt_StartAdd);
             this.panel3.Controls.Add(this.txt_Trigger_Detection1);
-            this.panel3.Controls.Add(this.txt_Trigger_Detection2);
             this.panel3.Controls.Add(this.label15);
-            this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.label21);
-            this.panel3.Location = new System.Drawing.Point(226, 25);
+            this.panel3.Location = new System.Drawing.Point(440, 25);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(214, 159);
+            this.panel3.Size = new System.Drawing.Size(191, 260);
             this.panel3.TabIndex = 46;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
-            // num_LogSaveDays
+            // txt_Completion_Add3
             // 
-            this.num_LogSaveDays.Decimal = 0;
-            this.num_LogSaveDays.DecimalPlaces = 0;
-            this.num_LogSaveDays.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.num_LogSaveDays.Location = new System.Drawing.Point(95, 65);
-            this.num_LogSaveDays.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.num_LogSaveDays.Maximum = 65535D;
-            this.num_LogSaveDays.Minimum = 0D;
-            this.num_LogSaveDays.MinimumSize = new System.Drawing.Size(100, 0);
-            this.num_LogSaveDays.Name = "num_LogSaveDays";
-            this.num_LogSaveDays.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.num_LogSaveDays.ShowText = false;
-            this.num_LogSaveDays.Size = new System.Drawing.Size(112, 20);
-            this.num_LogSaveDays.Step = 1D;
-            this.num_LogSaveDays.Style = Sunny.UI.UIStyle.Custom;
-            this.num_LogSaveDays.TabIndex = 46;
-            this.num_LogSaveDays.Text = "uiDoubleUpDown4";
-            this.num_LogSaveDays.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txt_Completion_Add3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_Completion_Add3.Enabled = false;
+            this.txt_Completion_Add3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txt_Completion_Add3.Location = new System.Drawing.Point(73, 222);
+            this.txt_Completion_Add3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_Completion_Add3.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txt_Completion_Add3.Name = "txt_Completion_Add3";
+            this.txt_Completion_Add3.ShowText = false;
+            this.txt_Completion_Add3.Size = new System.Drawing.Size(112, 21);
+            this.txt_Completion_Add3.TabIndex = 49;
+            this.txt_Completion_Add3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txt_HeartBeatAdd
+            // 
+            this.txt_HeartBeatAdd.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_HeartBeatAdd.Enabled = false;
+            this.txt_HeartBeatAdd.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txt_HeartBeatAdd.Location = new System.Drawing.Point(71, 36);
+            this.txt_HeartBeatAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_HeartBeatAdd.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txt_HeartBeatAdd.Name = "txt_HeartBeatAdd";
+            this.txt_HeartBeatAdd.ShowText = false;
+            this.txt_HeartBeatAdd.Size = new System.Drawing.Size(112, 21);
+            this.txt_HeartBeatAdd.TabIndex = 32;
+            this.txt_HeartBeatAdd.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.SystemColors.Control;
+            this.label13.Location = new System.Drawing.Point(7, 230);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(59, 12);
+            this.label13.TabIndex = 50;
+            this.label13.Text = "完成3地址";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.SystemColors.Control;
+            this.label12.Location = new System.Drawing.Point(13, 42);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 12);
+            this.label12.TabIndex = 33;
+            this.label12.Text = "心跳地址";
+            // 
+            // txt_Trigger_Detection3
+            // 
+            this.txt_Trigger_Detection3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_Trigger_Detection3.Enabled = false;
+            this.txt_Trigger_Detection3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txt_Trigger_Detection3.Location = new System.Drawing.Point(71, 192);
+            this.txt_Trigger_Detection3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_Trigger_Detection3.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txt_Trigger_Detection3.Name = "txt_Trigger_Detection3";
+            this.txt_Trigger_Detection3.ShowText = false;
+            this.txt_Trigger_Detection3.Size = new System.Drawing.Size(112, 21);
+            this.txt_Trigger_Detection3.TabIndex = 47;
+            this.txt_Trigger_Detection3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.SystemColors.Control;
+            this.label14.Location = new System.Drawing.Point(5, 197);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(59, 12);
+            this.label14.TabIndex = 48;
+            this.label14.Text = "触发3地址";
+            // 
+            // txt_Completion_Add2
+            // 
+            this.txt_Completion_Add2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_Completion_Add2.Enabled = false;
+            this.txt_Completion_Add2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txt_Completion_Add2.Location = new System.Drawing.Point(73, 161);
+            this.txt_Completion_Add2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_Completion_Add2.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txt_Completion_Add2.Name = "txt_Completion_Add2";
+            this.txt_Completion_Add2.ShowText = false;
+            this.txt_Completion_Add2.Size = new System.Drawing.Size(112, 21);
+            this.txt_Completion_Add2.TabIndex = 45;
+            this.txt_Completion_Add2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txt_Trigger_Detection2
+            // 
+            this.txt_Trigger_Detection2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_Trigger_Detection2.Enabled = false;
+            this.txt_Trigger_Detection2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txt_Trigger_Detection2.Location = new System.Drawing.Point(71, 131);
+            this.txt_Trigger_Detection2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_Trigger_Detection2.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txt_Trigger_Detection2.Name = "txt_Trigger_Detection2";
+            this.txt_Trigger_Detection2.ShowText = false;
+            this.txt_Trigger_Detection2.Size = new System.Drawing.Size(112, 21);
+            this.txt_Trigger_Detection2.TabIndex = 10;
+            this.txt_Trigger_Detection2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.Control;
+            this.label7.Location = new System.Drawing.Point(7, 136);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 12);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "触发2地址";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.SystemColors.Control;
+            this.label18.Location = new System.Drawing.Point(7, 164);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(59, 12);
+            this.label18.TabIndex = 46;
+            this.label18.Text = "完成2地址";
             // 
             // txt_Completion_Add1
             // 
             this.txt_Completion_Add1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txt_Completion_Add1.Enabled = false;
             this.txt_Completion_Add1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_Completion_Add1.Location = new System.Drawing.Point(89, 98);
+            this.txt_Completion_Add1.Location = new System.Drawing.Point(71, 100);
             this.txt_Completion_Add1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_Completion_Add1.MinimumSize = new System.Drawing.Size(1, 16);
             this.txt_Completion_Add1.Name = "txt_Completion_Add1";
@@ -569,7 +728,7 @@
             this.txt_StartAdd.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txt_StartAdd.Enabled = false;
             this.txt_StartAdd.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_StartAdd.Location = new System.Drawing.Point(89, 67);
+            this.txt_StartAdd.Location = new System.Drawing.Point(71, 8);
             this.txt_StartAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_StartAdd.MinimumSize = new System.Drawing.Size(1, 16);
             this.txt_StartAdd.Name = "txt_StartAdd";
@@ -583,7 +742,7 @@
             this.txt_Trigger_Detection1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txt_Trigger_Detection1.Enabled = false;
             this.txt_Trigger_Detection1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_Trigger_Detection1.Location = new System.Drawing.Point(89, 5);
+            this.txt_Trigger_Detection1.Location = new System.Drawing.Point(71, 69);
             this.txt_Trigger_Detection1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_Trigger_Detection1.MinimumSize = new System.Drawing.Size(1, 16);
             this.txt_Trigger_Detection1.Name = "txt_Trigger_Detection1";
@@ -592,45 +751,21 @@
             this.txt_Trigger_Detection1.TabIndex = 10;
             this.txt_Trigger_Detection1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txt_Trigger_Detection2
-            // 
-            this.txt_Trigger_Detection2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_Trigger_Detection2.Enabled = false;
-            this.txt_Trigger_Detection2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_Trigger_Detection2.Location = new System.Drawing.Point(89, 36);
-            this.txt_Trigger_Detection2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_Trigger_Detection2.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txt_Trigger_Detection2.Name = "txt_Trigger_Detection2";
-            this.txt_Trigger_Detection2.ShowText = false;
-            this.txt_Trigger_Detection2.Size = new System.Drawing.Size(112, 21);
-            this.txt_Trigger_Detection2.TabIndex = 10;
-            this.txt_Trigger_Detection2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.SystemColors.Control;
-            this.label15.Location = new System.Drawing.Point(11, 102);
+            this.label15.Location = new System.Drawing.Point(5, 105);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 12);
             this.label15.TabIndex = 33;
             this.label15.Text = "完成1地址";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.Control;
-            this.label7.Location = new System.Drawing.Point(13, 41);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 12);
-            this.label7.TabIndex = 32;
-            this.label7.Text = "触发2地址";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.Control;
-            this.label8.Location = new System.Drawing.Point(13, 73);
+            this.label8.Location = new System.Drawing.Point(13, 14);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 31;
@@ -640,30 +775,20 @@
             // 
             this.label21.AutoSize = true;
             this.label21.ForeColor = System.Drawing.SystemColors.Control;
-            this.label21.Location = new System.Drawing.Point(11, 10);
+            this.label21.Location = new System.Drawing.Point(5, 73);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(59, 12);
             this.label21.TabIndex = 44;
             this.label21.Text = "触发1地址";
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.SystemColors.Control;
-            this.label20.Location = new System.Drawing.Point(11, 69);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(77, 12);
-            this.label20.TabIndex = 45;
-            this.label20.Text = "日志保存天数";
-            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txt_PlcType);
             this.panel2.Controls.Add(this.chk_PLCEnabled);
             this.panel2.Controls.Add(this.num_PLCPort);
             this.panel2.Controls.Add(this.txt_PlcIpAddress);
             this.panel2.Controls.Add(this.txt_PlcDevice);
             this.panel2.Controls.Add(this.label22);
-            this.panel2.Controls.Add(this.txt_PlcType);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label5);
@@ -672,6 +797,29 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(214, 159);
             this.panel2.TabIndex = 22;
+            // 
+            // txt_PlcType
+            // 
+            this.txt_PlcType.DataSource = null;
+            this.txt_PlcType.Enabled = false;
+            this.txt_PlcType.FillColor = System.Drawing.Color.White;
+            this.txt_PlcType.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txt_PlcType.Items.AddRange(new object[] {
+            "Omron.OmronFinsNet",
+            "Melsec.MelsecMcNet",
+            "Siemens.SiemensS7Net",
+            "Inovance.InovanceSerialOverTcp",
+            "ModbusTcpNet",
+            "ModbusRtu",
+            "Omron.PMAC.CK3M"});
+            this.txt_PlcType.Location = new System.Drawing.Point(91, 6);
+            this.txt_PlcType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PlcType.MinimumSize = new System.Drawing.Size(63, 0);
+            this.txt_PlcType.Name = "txt_PlcType";
+            this.txt_PlcType.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.txt_PlcType.Size = new System.Drawing.Size(112, 20);
+            this.txt_PlcType.TabIndex = 52;
+            this.txt_PlcType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // chk_PLCEnabled
             // 
@@ -688,6 +836,7 @@
             // 
             this.num_PLCPort.Decimal = 0;
             this.num_PLCPort.DecimalPlaces = 0;
+            this.num_PLCPort.Enabled = false;
             this.num_PLCPort.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.num_PLCPort.Location = new System.Drawing.Point(91, 98);
             this.num_PLCPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -741,20 +890,6 @@
             this.label22.Size = new System.Drawing.Size(59, 12);
             this.label22.TabIndex = 43;
             this.label22.Text = "PLC端口号";
-            // 
-            // txt_PlcType
-            // 
-            this.txt_PlcType.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_PlcType.Enabled = false;
-            this.txt_PlcType.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_PlcType.Location = new System.Drawing.Point(91, 5);
-            this.txt_PlcType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_PlcType.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txt_PlcType.Name = "txt_PlcType";
-            this.txt_PlcType.ShowText = false;
-            this.txt_PlcType.Size = new System.Drawing.Size(112, 21);
-            this.txt_PlcType.TabIndex = 9;
-            this.txt_PlcType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
@@ -1164,35 +1299,212 @@
             this.txt_PointMoveStepAdd.TabIndex = 58;
             this.txt_PointMoveStepAdd.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txt_Completion_Add2
+            // panel8
             // 
-            this.txt_Completion_Add2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txt_Completion_Add2.Enabled = false;
-            this.txt_Completion_Add2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_Completion_Add2.Location = new System.Drawing.Point(91, 128);
-            this.txt_Completion_Add2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_Completion_Add2.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txt_Completion_Add2.Name = "txt_Completion_Add2";
-            this.txt_Completion_Add2.ShowText = false;
-            this.txt_Completion_Add2.Size = new System.Drawing.Size(112, 21);
-            this.txt_Completion_Add2.TabIndex = 45;
-            this.txt_Completion_Add2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.panel8.Controls.Add(this.DoubleUpDown3);
+            this.panel8.Controls.Add(this.DoubleUpDown1);
+            this.panel8.Controls.Add(this.DoubleUpDown2);
+            this.panel8.Controls.Add(this.DoubleUpDown4);
+            this.panel8.Controls.Add(this.Position2);
+            this.panel8.Controls.Add(this.label17);
+            this.panel8.Controls.Add(this.Position4);
+            this.panel8.Controls.Add(this.Position1);
+            this.panel8.Controls.Add(this.Position3);
+            this.panel8.Controls.Add(this.label25);
+            this.panel8.Controls.Add(this.label26);
+            this.panel8.Controls.Add(this.label27);
+            this.panel8.Location = new System.Drawing.Point(640, 25);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(275, 260);
+            this.panel8.TabIndex = 51;
+            this.panel8.Paint += new System.Windows.Forms.PaintEventHandler(this.panel8_Paint);
             // 
-            // label18
+            // Position2
             // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.SystemColors.Control;
-            this.label18.Location = new System.Drawing.Point(13, 132);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(59, 12);
-            this.label18.TabIndex = 46;
-            this.label18.Text = "完成2地址";
+            this.Position2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Position2.Enabled = false;
+            this.Position2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Position2.Location = new System.Drawing.Point(71, 36);
+            this.Position2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Position2.MinimumSize = new System.Drawing.Size(1, 16);
+            this.Position2.Name = "Position2";
+            this.Position2.ShowText = false;
+            this.Position2.Size = new System.Drawing.Size(71, 21);
+            this.Position2.TabIndex = 32;
+            this.Position2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.Control;
+            this.label17.Location = new System.Drawing.Point(3, 41);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(59, 12);
+            this.label17.TabIndex = 33;
+            this.label17.Text = "位置2地址";
+            // 
+            // Position4
+            // 
+            this.Position4.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Position4.Enabled = false;
+            this.Position4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Position4.Location = new System.Drawing.Point(71, 100);
+            this.Position4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Position4.MinimumSize = new System.Drawing.Size(1, 16);
+            this.Position4.Name = "Position4";
+            this.Position4.ShowText = false;
+            this.Position4.Size = new System.Drawing.Size(71, 21);
+            this.Position4.TabIndex = 10;
+            this.Position4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Position1
+            // 
+            this.Position1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Position1.Enabled = false;
+            this.Position1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Position1.Location = new System.Drawing.Point(71, 8);
+            this.Position1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Position1.MinimumSize = new System.Drawing.Size(1, 16);
+            this.Position1.Name = "Position1";
+            this.Position1.ShowText = false;
+            this.Position1.Size = new System.Drawing.Size(71, 21);
+            this.Position1.TabIndex = 10;
+            this.Position1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Position3
+            // 
+            this.Position3.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Position3.Enabled = false;
+            this.Position3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Position3.Location = new System.Drawing.Point(71, 69);
+            this.Position3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Position3.MinimumSize = new System.Drawing.Size(1, 16);
+            this.Position3.Name = "Position3";
+            this.Position3.ShowText = false;
+            this.Position3.Size = new System.Drawing.Size(71, 21);
+            this.Position3.TabIndex = 10;
+            this.Position3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.SystemColors.Control;
+            this.label25.Location = new System.Drawing.Point(5, 105);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(59, 12);
+            this.label25.TabIndex = 33;
+            this.label25.Text = "位置4地址";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.SystemColors.Control;
+            this.label26.Location = new System.Drawing.Point(5, 14);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(59, 12);
+            this.label26.TabIndex = 31;
+            this.label26.Text = "位置1地址";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.SystemColors.Control;
+            this.label27.Location = new System.Drawing.Point(5, 73);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(59, 12);
+            this.label27.TabIndex = 44;
+            this.label27.Text = "位置3地址";
+            // 
+            // DoubleUpDown2
+            // 
+            this.DoubleUpDown2.Decimal = 0;
+            this.DoubleUpDown2.DecimalPlaces = 0;
+            this.DoubleUpDown2.Enabled = false;
+            this.DoubleUpDown2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DoubleUpDown2.Location = new System.Drawing.Point(154, 32);
+            this.DoubleUpDown2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DoubleUpDown2.Maximum = 1200D;
+            this.DoubleUpDown2.Minimum = 0D;
+            this.DoubleUpDown2.MinimumSize = new System.Drawing.Size(100, 0);
+            this.DoubleUpDown2.Name = "DoubleUpDown2";
+            this.DoubleUpDown2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DoubleUpDown2.ShowText = false;
+            this.DoubleUpDown2.Size = new System.Drawing.Size(112, 25);
+            this.DoubleUpDown2.Step = 1D;
+            this.DoubleUpDown2.Style = Sunny.UI.UIStyle.Custom;
+            this.DoubleUpDown2.TabIndex = 47;
+            this.DoubleUpDown2.Text = "uiDoubleUpDown3";
+            this.DoubleUpDown2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // DoubleUpDown4
+            // 
+            this.DoubleUpDown4.Decimal = 0;
+            this.DoubleUpDown4.DecimalPlaces = 0;
+            this.DoubleUpDown4.Enabled = false;
+            this.DoubleUpDown4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DoubleUpDown4.Location = new System.Drawing.Point(154, 96);
+            this.DoubleUpDown4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DoubleUpDown4.Maximum = 1200D;
+            this.DoubleUpDown4.Minimum = 0D;
+            this.DoubleUpDown4.MinimumSize = new System.Drawing.Size(100, 0);
+            this.DoubleUpDown4.Name = "DoubleUpDown4";
+            this.DoubleUpDown4.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DoubleUpDown4.ShowText = false;
+            this.DoubleUpDown4.Size = new System.Drawing.Size(112, 25);
+            this.DoubleUpDown4.Step = 1D;
+            this.DoubleUpDown4.Style = Sunny.UI.UIStyle.Custom;
+            this.DoubleUpDown4.TabIndex = 47;
+            this.DoubleUpDown4.Text = "uiDoubleUpDown4";
+            this.DoubleUpDown4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // DoubleUpDown1
+            // 
+            this.DoubleUpDown1.Decimal = 0;
+            this.DoubleUpDown1.DecimalPlaces = 0;
+            this.DoubleUpDown1.Enabled = false;
+            this.DoubleUpDown1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DoubleUpDown1.Location = new System.Drawing.Point(154, 4);
+            this.DoubleUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DoubleUpDown1.Maximum = 1200D;
+            this.DoubleUpDown1.Minimum = 0D;
+            this.DoubleUpDown1.MinimumSize = new System.Drawing.Size(100, 0);
+            this.DoubleUpDown1.Name = "DoubleUpDown1";
+            this.DoubleUpDown1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DoubleUpDown1.ShowText = false;
+            this.DoubleUpDown1.Size = new System.Drawing.Size(112, 25);
+            this.DoubleUpDown1.Step = 1D;
+            this.DoubleUpDown1.Style = Sunny.UI.UIStyle.Custom;
+            this.DoubleUpDown1.TabIndex = 48;
+            this.DoubleUpDown1.Text = "uiDoubleUpDown1";
+            this.DoubleUpDown1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // DoubleUpDown3
+            // 
+            this.DoubleUpDown3.Decimal = 0;
+            this.DoubleUpDown3.DecimalPlaces = 0;
+            this.DoubleUpDown3.Enabled = false;
+            this.DoubleUpDown3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DoubleUpDown3.Location = new System.Drawing.Point(154, 67);
+            this.DoubleUpDown3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DoubleUpDown3.Maximum = 1200D;
+            this.DoubleUpDown3.Minimum = 0D;
+            this.DoubleUpDown3.MinimumSize = new System.Drawing.Size(100, 0);
+            this.DoubleUpDown3.Name = "DoubleUpDown3";
+            this.DoubleUpDown3.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DoubleUpDown3.ShowText = false;
+            this.DoubleUpDown3.Size = new System.Drawing.Size(112, 25);
+            this.DoubleUpDown3.Step = 1D;
+            this.DoubleUpDown3.Style = Sunny.UI.UIStyle.Custom;
+            this.DoubleUpDown3.TabIndex = 48;
+            this.DoubleUpDown3.Text = "uiDoubleUpDown2";
+            this.DoubleUpDown3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // 通讯设置
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 428);
+            this.ClientSize = new System.Drawing.Size(948, 558);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "通讯设置";
@@ -1213,6 +1525,8 @@
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1243,7 +1557,6 @@
         private Sunny.UI.UITextBox txt_PlcIpAddress;
         private Sunny.UI.UITextBox txt_PlcDevice;
         private System.Windows.Forms.Label label22;
-        private Sunny.UI.UITextBox txt_PlcType;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -1296,5 +1609,25 @@
         private System.Windows.Forms.Label label11;
         private Sunny.UI.UITextBox txt_Completion_Add2;
         private System.Windows.Forms.Label label18;
+        private Sunny.UI.UIComboBox txt_PlcType;
+        private Sunny.UI.UITextBox txt_Completion_Add3;
+        private Sunny.UI.UITextBox txt_HeartBeatAdd;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private Sunny.UI.UITextBox txt_Trigger_Detection3;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Panel panel8;
+        private Sunny.UI.UITextBox Position2;
+        private System.Windows.Forms.Label label17;
+        private Sunny.UI.UITextBox Position4;
+        private Sunny.UI.UITextBox Position1;
+        private Sunny.UI.UITextBox Position3;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private Sunny.UI.UIDoubleUpDown DoubleUpDown3;
+        private Sunny.UI.UIDoubleUpDown DoubleUpDown1;
+        private Sunny.UI.UIDoubleUpDown DoubleUpDown2;
+        private Sunny.UI.UIDoubleUpDown DoubleUpDown4;
     }
 }

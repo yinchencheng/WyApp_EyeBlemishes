@@ -1,9 +1,19 @@
 <?xml version="1.0"?>
 <PLCParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Trigger_Detection1>750</Trigger_Detection1>
-  <Completion1>770</Completion1>
-  <Trigger_Detection2>250</Trigger_Detection2>
-  <Completion2>200</Completion2>
-  <StartAdd>760</StartAdd>
-  <HeartBeatAdd>D771</HeartBeatAdd>
+  <Trigger_Detection1>80</Trigger_Detection1>
+  <Completion1>89</Completion1>
+  <Trigger_Detection2>81</Trigger_Detection2>
+  <Completion2>90</Completion2>
+  <Trigger_Detection3>82</Trigger_Detection3>
+  <Completion3>91</Completion3>
+  <StartAdd>59</StartAdd>
+  <HeartBeatAdd>69</HeartBeatAdd>
+  <Position1>99</Position1>
+  <Position2>101</Position2>
+  <Position3>103</Position3>
+  <Position4>105</Position4>
+  <Position1Value>343</Position1Value>
+  <Position2Value>841</Position2Value>
+  <Position3Value>844</Position3Value>
+  <Position4Value>1270</Position4Value>
 </PLCParams>

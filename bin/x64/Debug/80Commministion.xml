@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Commministion xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <LogLevel>Debug</LogLevel>
+  <LogFileExistDay>0</LogFileExistDay>
+  <PlcEnable>false</PlcEnable>
+  <PlcType>Omron.OmronFinsNet</PlcType>
+  <PlcIpAddress>127.0.0.1</PlcIpAddress>
+  <PlcIpPort>9600</PlcIpPort>
+  <PlcDevice>200</PlcDevice>
+  <TcpClientEnable>true</TcpClientEnable>
+  <TcpClientIpAddress>127.0.0.1</TcpClientIpAddress>
+  <TcpClientIpPort>9600</TcpClientIpPort>
+  <TcpServerEnable>false</TcpServerEnable>
+  <TcpServerIpAddress>127.0.0.1</TcpServerIpAddress>
+  <TcpServerIpPort>9600</TcpServerIpPort>
+  <ImagePath>D:\VisionDetect\InspectImage\</ImagePath>
+  <ImageSavePath>D:\Image\</ImageSavePath>
+  <productName>80</productName>
+</Commministion>

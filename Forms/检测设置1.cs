@@ -40,7 +40,7 @@ namespace WY_App
         {
             InitializeComponent();
             HOperatorSet.SetPart(hWindowControl1.HalconWindow, 0, 0, -1, -1);//设置窗体的规格 
-            hWindowControl1.HalconWindow.DispObj(主窗体.hImage[0]);
+            hWindowControl1.HalconWindow.DispObj(MainForm.hImage[0]);
         }
         
         private void panel4_MouseMove(object sender, MouseEventArgs e)
@@ -81,7 +81,7 @@ namespace WY_App
             {
                 //picture0.ImageLocation = openfile.FileName;
                 //MatImage = Cv2.ImRead(openfile.FileName);
-                Halcon.ImgDisplay(0,openfile.FileName, hWindowControl1.HalconWindow,ref 主窗体.hImage[0]);;
+                Halcon.ImgDisplay(0,openfile.FileName, hWindowControl1.HalconWindow,ref MainForm.hImage[0]);;
             }
             openfile.Dispose();
         }
@@ -89,13 +89,13 @@ namespace WY_App
 
         private void btn_SaveParams_Click(object sender, EventArgs e)
         {
-            XMLHelper.serialize<Parameter.Specifications>(Parameter.specifications, "Parameter/Specifications.xml");
+            XMLHelper.serialize<Parameter.Specifications>(Parameter.specifications, Parameter.commministion.productName + "/Specifications.xml");
         }
 
         private void 检测设置_Load(object sender, EventArgs e)
         {
             HOperatorSet.SetPart(hWindowControl1.HalconWindow, 0, 0, -1, -1);//设置窗体的规格 
-            hWindowControl1.HalconWindow.DispObj(主窗体.hImage[0]);
+            hWindowControl1.HalconWindow.DispObj(MainForm.hImage[0]);
             num_AreaHigh2.Value = Parameter.specifications.圆形检测[0].AreaHigh;
             num_AreaLow2.Value = Parameter.specifications.圆形检测[0].AreaLow;
             num_ThresholdHigh2.Value = Parameter.specifications.圆形检测[0].ThresholdHigh;
@@ -124,10 +124,10 @@ namespace WY_App
         {
             System.Diagnostics.Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start(); //  开始监视代码运行时间
-            HOperatorSet.DispObj(主窗体.hImage[0], hWindowControl1.HalconWindow);
+            HOperatorSet.DispObj(MainForm.hImage[0], hWindowControl1.HalconWindow);
             try
             {
-                Halcon.DetectionCricleHObject(0,hWindowControl1.HalconWindow, 主窗体.hImage[0], Parameter.specifications.圆形检测[0], Parameter.specifications.圆形检测[0].Row, Parameter.specifications.圆形检测[0].Colum, 50, ref pointReaultCricle);
+                Halcon.DetectionCricleHObject(0,hWindowControl1.HalconWindow, MainForm.hImage[0], Parameter.specifications.圆形检测[0], Parameter.specifications.圆形检测[0].Row, Parameter.specifications.圆形检测[0].Colum, 50, ref pointReaultCricle);
 
             }
             catch 
@@ -149,17 +149,17 @@ namespace WY_App
 
         private void uiButton1_Click(object sender, EventArgs e)
         {
-            Halcon.DetectionDrawCriclaAOI(hWindowControl1.HalconWindow, 主窗体.hImage[0], ref Parameter.specifications.圆形检测[0]);
+            Halcon.DetectionDrawCriclaAOI(hWindowControl1.HalconWindow, MainForm.hImage[0], ref Parameter.specifications.圆形检测[0]);
         }
 
         private void uiButton13_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start(); //  开始监视代码运行时间
-            HOperatorSet.DispObj(主窗体.hImage[0], hWindowControl1.HalconWindow);
+            HOperatorSet.DispObj(MainForm.hImage[0], hWindowControl1.HalconWindow);
             bool DetectionResult = true;
             HOperatorSet.SetPart(hWindowControl1.HalconWindow, 0, 0, -1, -1);
-            Detection(hWindowControl1.HalconWindow, 主窗体.hImage[0],ref DetectionResult);
+            Detection(hWindowControl1.HalconWindow, MainForm.hImage[0],ref DetectionResult);
             stopwatch.Stop(); //  停止监视
             TimeSpan timespan = stopwatch.Elapsed; //  获取当前实例测量得出的总时间
             double milliseconds = timespan.TotalMilliseconds;  //  总毫秒数           
@@ -171,26 +171,17 @@ namespace WY_App
         {
             try
             {
-                try
-                {
-                    pointReaultCricle = Parameter.specifications.圆形检测[0];
-                    Halcon.DetectionCricleHObject(0, hWindow, hImage, Parameter.specifications.圆形检测[0], Parameter.specifications.圆形检测[0].Row, Parameter.specifications.圆形检测[0].Colum, 100, ref pointReaultCricle);
-                    HOperatorSet.SetTposition(hWindow, pointReaultCricle.Row, pointReaultCricle.Colum);
-                    HOperatorSet.WriteString(hWindow, "半径:" + pointReaultCricle.Radius.ToString("0.0000"));
-                    Halcon.DetectionCricle0(0,hWindow, hImage, pointReaultCricle, ref DetectionResult);
-                }
-                catch
-                {
-
-                }
+                pointReaultCricle = Parameter.specifications.圆形检测[0];
+                Halcon.DetectionCricleHObject(0, hWindow, hImage, Parameter.specifications.圆形检测[0], Parameter.specifications.圆形检测[0].Row, Parameter.specifications.圆形检测[0].Colum, 30, ref pointReaultCricle);
+                HOperatorSet.SetTposition(hWindow, pointReaultCricle.Row + pointReaultCricle.Radius, pointReaultCricle.Colum);
+                HOperatorSet.WriteString(hWindow, "半径:" + pointReaultCricle.Radius.ToString("0.0000"));
+                Halcon.DetectionCricle0(0, hWindow, hImage, pointReaultCricle, ref DetectionResult);
             }
-            catch
+            catch (Exception ex)
             {
-
-            }
-
-
-
+                MainForm.AlarmList.Add("检测1Error;" + ex.Message);
+                DetectionResult = false;
+            }           
         }
 
         private void uiDoubleUpDown4_ValueChanged(object sender, double value)
